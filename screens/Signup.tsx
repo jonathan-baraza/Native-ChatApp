@@ -19,6 +19,7 @@ const Signup = () => {
   const [password, setPassword] = useState<string>("");
   const navigation: any = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const handleSignup = async () => {
     setLoading(true);
@@ -34,8 +35,10 @@ const Signup = () => {
         })
         .catch((err) => {
           setLoading(false);
-          console.log("Signup failed");
-          console.log(err);
+          setError(err.message);
+          setTimeout(() => {
+            setError("");
+          }, 5000);
         });
     }
   };
@@ -52,6 +55,13 @@ const Signup = () => {
         >
           Sign up
         </Text>
+
+        {error && (
+          <Text className="text-red-500 border border-red-500 mx-auto mb-5 bg-red-100 p-2 rounded text-sm px-6 text-center">
+            {error.split(":")[1]}
+          </Text>
+        )}
+
         <TextInput
           className="bg-[#f3f5f7] p-3 rounded-xl px-5"
           placeholder="Enter Email"
