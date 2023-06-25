@@ -29,8 +29,6 @@ const Login = () => {
           value={password}
           onChangeText={setPassword}
         />
-        <Text>Email:{email}</Text>
-        <Text>Passoword:{password}</Text>
 
         <TouchableOpacity
           activeOpacity={0.7}
