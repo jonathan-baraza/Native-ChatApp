@@ -5,13 +5,27 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Chat from "./screens/Chat";
 import Login from "./screens/Login";
+import Signup from "./screens/Signup";
 
 const Stack = createStackNavigator();
 
 function ChatStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="chat" component={Chat} />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="signup"
+        component={Signup}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="login"
+        component={Login}
+      />
     </Stack.Navigator>
   );
 }
@@ -19,8 +33,7 @@ function ChatStack() {
 function RootNavigator() {
   return (
     <NavigationContainer>
-      <Login />
-      {/* <ChatStack /> */}
+      <ChatStack />
     </NavigationContainer>
   );
 }
