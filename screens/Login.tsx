@@ -1,7 +1,9 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
-import React from "react";
+import { useState, useEffect } from "react";
 
 const Login = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   return (
     <View className="flex-1">
       <Image
@@ -16,11 +18,19 @@ const Login = () => {
         <TextInput
           className="bg-[#f3f5f7] p-3 rounded-xl px-5"
           placeholder="Enter Email"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
         />
         <TextInput
           className="bg-[#f3f5f7] p-3 mt-6 rounded-xl px-5"
           placeholder="Enter Password"
+          secureTextEntry={true}
+          value={password}
+          onChangeText={setPassword}
         />
+        <Text>Email:{email}</Text>
+        <Text>Passoword:{password}</Text>
 
         <TouchableOpacity
           activeOpacity={0.7}
