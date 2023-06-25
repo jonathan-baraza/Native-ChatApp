@@ -5,21 +5,39 @@ import {
   TextInput,
   TouchableOpacity,
   ToastAndroid,
+  ActivityIndicator,
 } from "react-native";
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
+
+//firebase
+import { auth } from "../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigation: any = useNavigation();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSignup = async () => {
+    setLoading(true);
     if (!email || !password) {
+      setLoading(false);
       return ToastAndroid.show("Please provide all inputs", ToastAndroid.SHORT);
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+          setLoading(false);
+          console.log("Signup success");
+          console.log(res);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log("Signup failed");
+          console.log(err);
+        });
     }
-
-    
   };
   return (
     <View className="flex-1 bg-white">
@@ -29,7 +47,9 @@ const Signup = () => {
         resizeMode="cover"
       />
       <View className="bg-white rounded-tl-[45px]  flex-1 py-8 px-6 -top-20">
-        <Text className="text-[#ed6d01] my-8 text-center mx-auto text-3xl font-bold">
+        <Text
+          className={`text-[#ed6d01]  my-8 text-center mx-auto text-3xl font-bold`}
+        >
           Sign up
         </Text>
         <TextInput
@@ -54,9 +74,15 @@ const Signup = () => {
         <TouchableOpacity
           onPress={handleSignup}
           activeOpacity={0.7}
-          className="bg-[#ed6d01] p-3 mt-12 justify-center items-center rounded-xl"
+          className={`${
+            !loading ? "bg-[#ed6d01]" : "bg-[#ffc08c]"
+          } flex-row p-3 mt-12 justify-center items-center rounded-xl`}
         >
-          <Text className="text-white">Log In</Text>
+          {loading ? (
+            <ActivityIndicator size={"small"} color={"white"} className="" />
+          ) : (
+            <Text className="text-white ">Log In</Text>
+          )}
         </TouchableOpacity>
         <View className="flex-row justify-center mt-6">
           <Text>Already have an account?</Text>
