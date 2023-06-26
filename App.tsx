@@ -66,5 +66,9 @@ function RootNavigator() {
 }
 
 export default function App() {
-  return <RootNavigator />;
+  return (
+    <AuthenticatedUserProvider>
+      <RootNavigator />
+    </AuthenticatedUserProvider>
+  );
 }
