@@ -39,6 +39,14 @@ function AuthStack() {
 }
 
 function RootNavigator() {
+  const { user, setUser }: any = useContext(AuthenticatedUserContext);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (authenticatedUser) => {
+      authenticatedUser ? setUser(authenticatedUser) : setUser(null);
+      setLoading(false);
+    });
+  }, []);
   return (
     <NavigationContainer>
       <ChatStack />
