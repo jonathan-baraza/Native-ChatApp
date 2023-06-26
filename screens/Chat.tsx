@@ -44,7 +44,7 @@ const Chat = () => {
 
   useLayoutEffect(() => {
     const collectionRef = collection(database, "chats");
-    const q = query(collectionRef, (ref) => ref.orderBy("createdAt", "desc"));
+    const q = query(collectionRef, orderBy("createdAt", "desc"));
 
     const unsubscribe=onSnapshot(q,snapshot=>{
       console.log("snapshot");
@@ -69,7 +69,10 @@ const Chat = () => {
   
 
 
-  return <GiftedChat />;
+  return <GiftedChat messages={messages} onSend={messages=>onSend(messages)} user={{
+    _id:auth?.currentUser?.email,
+    avatar:"https://i.pravatar.cc/300"
+  }} />;
 };
 
 export default Chat;
