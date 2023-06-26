@@ -25,23 +25,17 @@ const AuthenticatedUserProvider = ({ children }: any) => {
 function ChatStack() {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen name="home" component={Home} /> */}
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="signup"
-        component={Signup}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="login"
-        component={Login}
-      />
+      <Stack.Screen name="home" component={Home} />
+      <Stack.Screen name="chat" component={Chat} />
     </Stack.Navigator>
   );
+}
+
+function AuthStack() {
+  <Stack.Navigator>
+    <Stack.Screen name="login" component={Login} />
+    <Stack.Screen name="signup" component={Signup} />
+  </Stack.Navigator>;
 }
 
 function RootNavigator() {
