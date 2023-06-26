@@ -43,7 +43,19 @@ const Chat = () => {
   }, [navigation]);
 
   useLayoutEffect(() => {
-    // const collectionRef
+    const collectionRef = collection(database, "chats");
+    const q = query(collectionRef, (ref) => ref.orderBy("createdAt", "desc"));
+
+    const unsubscribe=onSnapshot(q,snapshot=>{
+      console.log("snapshot");
+      setMessages(snapshot.docs.map(doc=>(
+        _id:doc.id,
+        createdAt:doc.data().createdAt,
+        text:doc.data().text,
+        user:doc.data().user
+      )))
+    })
+    return ()=>unsubscribe();
   }, []);
   return <GiftedChat />;
 };
