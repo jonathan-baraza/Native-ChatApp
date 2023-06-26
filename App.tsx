@@ -46,7 +46,8 @@ function RootNavigator() {
       authenticatedUser ? setUser(authenticatedUser) : setUser(null);
       setLoading(false);
     });
-  }, []);
+    return () => unsubscribe();
+  }, [user]);
   return (
     <NavigationContainer>
       <ChatStack />
