@@ -40,6 +40,10 @@ const Chat = () => {
         </TouchableOpacity>
       ),
     });
+  }, [navigation]);
+
+  useLayoutEffect(() => {
+    // const collectionRef
   }, []);
   return <GiftedChat />;
 };
