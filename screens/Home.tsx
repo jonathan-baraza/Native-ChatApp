@@ -1,11 +1,18 @@
-import { View, Text, StyleSheet, StatusBar, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, Entypo } from "@expo/vector-icons";
 const catImageUrl =
   "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d";
 const Home = () => {
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => <FontAwesome name="search" size={24} color="blue" />,
@@ -23,7 +30,9 @@ const Home = () => {
   }, [navigation]);
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("chat")}>
+        <Entypo name="chat" size={24} color="lightgray" />
+      </TouchableOpacity>
     </View>
   );
 };
