@@ -32,10 +32,12 @@ function ChatStack() {
 }
 
 function AuthStack() {
-  <Stack.Navigator>
-    <Stack.Screen name="login" component={Login} />
-    <Stack.Screen name="signup" component={Signup} />
-  </Stack.Navigator>;
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="login" component={Login} />
+      <Stack.Screen name="signup" component={Signup} />
+    </Stack.Navigator>
+  );
 }
 
 function RootNavigator() {
@@ -58,7 +60,7 @@ function RootNavigator() {
   }
   return (
     <NavigationContainer>
-      <ChatStack />
+      {user ? <ChatStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }
