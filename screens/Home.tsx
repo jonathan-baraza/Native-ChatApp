@@ -15,7 +15,15 @@ const Home = () => {
   const navigation: any = useNavigation();
   useEffect(() => {
     navigation.setOptions({
-      headerLeft: () => <FontAwesome name="search" size={24} color="blue" />,
+      headerLeft: () => (
+        <FontAwesome
+          name="search"
+          size={24}
+          color="blue"
+          className=""
+          style={{ marginLeft: 15 }}
+        />
+      ),
       headerRight: () => (
         <Image
           source={{ uri: catImageUrl }}
