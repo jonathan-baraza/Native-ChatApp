@@ -37,8 +37,11 @@ const Home = () => {
     });
   }, [navigation]);
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("chat")}>
+    <View style={styles.container} className="w-fit flex-1">
+      <TouchableOpacity
+        className="bg-[#e86b01]  p-4 absolute right-5 bottom-5 rounded-full"
+        onPress={() => navigation.navigate("chat")}
+      >
         <Entypo name="chat" size={24} color="lightgray" />
       </TouchableOpacity>
     </View>
